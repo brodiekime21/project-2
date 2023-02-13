@@ -6,14 +6,15 @@ const mongoose = require('mongoose')
 const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
-const User = require('../models/User.model')
+const User = require('../models/User.model');
+const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
 /* GET users listing. */
-router.get('/signup', (req, res, next) => {
+router.get('/signup', isLoggedOut, (req, res, next) => {
   res.render('users/signup.hbs')
 });
 
-router.post('/signup', (req, res, next) => {
+router.post('/signup', isLoggedOut, (req, res, next) => {
 
   const { username, email, password } = req.body;
 
@@ -56,6 +57,10 @@ router.get('/login', (req, res, next) => {
   res.render('users/login.hbs')
 });
 
+router.get('/profile', isLoggedIn, (req, res, next) => {
+  res.render('users/profile.hbs')
+});
+
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
  
@@ -73,7 +78,7 @@ router.post('/login', (req, res, next) => {
         return;
       } else if (bcryptjs.compareSync(password, user.password)) {
         req.session.user = user
-        res.redirect('/');
+        res.redirect('/users/profile');
       } else {
         res.render('users/login.hbs', { errorMessage: 'Incorrect password.' });
       }

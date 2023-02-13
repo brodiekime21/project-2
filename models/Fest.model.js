@@ -1,11 +1,11 @@
 const { Schema, model } = require('mongoose');
 
-const roomSchema = new Schema({
+const festSchema = new Schema({
     name: String,
     description: String,
     imageUrl: String,
     owner: { type: Schema.Types.ObjectId, ref: "User" },
-    reviews: [{type: Schema.Types.ObjectId, ref: "Review"}]
+    comments: [{type: Schema.Types.ObjectId, ref: "Comment"}]
   });
 
-module.exports = model('Room', roomSchema);
+module.exports = model('Fest', festSchema);

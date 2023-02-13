@@ -1,6 +1,13 @@
 <h1>{{title}}</h1>
 <p>Welcome to {{title}}</p>
 
+{{#each foundFests}}
+
+    {{> eachFest}}
+    <a href="/fests/details/{{_id}}">See details</a>
+
+{{/each}}
+
 {{#if errorMessage}}
     <p>{{errorMessage}}</p>
 {{/if}}

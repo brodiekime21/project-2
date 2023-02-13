@@ -1,0 +1,21 @@
+<h2>Hello {{owner.username}}.</h2>
+
+
+{{#if fests}}
+
+    <ul>
+
+{{#each foundFests}}
+
+    {{> eachFest}}
+    <a href="/fests/details/{{_id}}">See details</a>
+
+{{/each}}
+
+    </ul>
+
+{{else}}
+
+    <p>You haven't created any festivals yet!</p>
+
+{{/if}}

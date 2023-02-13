@@ -20,11 +20,11 @@ router.get('/all-fests', (req, res, next) => {
 
 });
 
-router.get('/create-fest', (req, res, next) => {   /////I TOOK OUT MIDDLEWARE
+router.get('/create-fest', isLoggedIn, (req, res, next) => {   /////I TOOK OUT MIDDLEWARE
   res.render('fests/create-fest.hbs');
 });
 
-router.post('/create-fest', (req, res, next) => {
+router.post('/create-fest', isLoggedIn, (req, res, next) => {
 
     const { name, description, imageUrl } = req.body
 
@@ -36,7 +36,7 @@ router.post('/create-fest', (req, res, next) => {
     })
     .then((createdFest) => {
         console.log(createdFest)
-        res.redirect('/festss/all-fests')
+        res.redirect('/fests/all-fests')
     })
     .catch((err) => {
         console.log(err)
@@ -61,7 +61,7 @@ router.get('/details/:id', (req, res, next) => {
 
 })
 
-router.get('/edit/:id', (req, res, next) => {
+router.get('/edit/:id', isOwner, (req, res, next) => {
 
     Fest.findById(req.params.id)
     .then((foundFest) => {
@@ -72,7 +72,7 @@ router.get('/edit/:id', (req, res, next) => {
     })
 })
 
-router.post('/edit/:id', (req, res, next) => {
+router.post('/edit/:id', isOwner, (req, res, next) => {
     const { name, description, imageUrl } = req.body
     Fest.findByIdAndUpdate(req.params.id, 
         {
