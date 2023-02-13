@@ -7,6 +7,8 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
 const User = require('../models/User.model');
+const Fest = require('../models/Fest.model')
+
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
 /* GET users listing. */
@@ -53,12 +55,19 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
 
 })
 
-router.get('/login', (req, res, next) => {
+router.get('/login', isLoggedOut, (req, res, next) => {
   res.render('users/login.hbs')
 });
 
 router.get('/profile', isLoggedIn, (req, res, next) => {
-  res.render('users/profile.hbs')
+  Fest.find()
+  .populate('owner')
+  .then((foundFests) => {
+      res.render('users/profile.hbs', { foundFests } );
+  })
+  .catch((err) => {
+      console.log(err)
+  })
 });
 
 router.post('/login', (req, res, next) => {
@@ -89,7 +98,7 @@ router.post('/login', (req, res, next) => {
 router.get('/logout', (req, res, next) => {
   req.session.destroy(err => {
     if (err) next(err);
-    res.redirect('/');
+    res.redirect('/users/login');
   });
 });
 
