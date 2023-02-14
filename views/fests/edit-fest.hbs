@@ -1,6 +1,6 @@
 <h2>Edit Fest</h2>
 
-<form action="/fests/edit/{{_id}}" method="post">
+<form action="/fests/edit/{{_id}}" method="post" enctype="multipart/form-data">
 
 <label for="">Festival Name</label>
 <input type="text" name="name" value="{{name}}">
@@ -8,8 +8,12 @@
 <label for="">Description</label>
 <input type="text" name="description" value="{{description}}">
 
-<label for="">Image</label>
-<input type="text" name="imageUrl" value="{{imageUrl}}">
+<label for="">Rating</label>
+<input type="number" name="rating" value="{{rating}}">
+
+<label for="">Picture from Festival</label>
+<input type="file" name="imageUrl"  value={{imageUrl}}>
+
 
 <button type="submit">Edit Fest</button>
 

@@ -7,7 +7,10 @@ const bcryptjs = require('bcryptjs');
 const saltRounds = 10;
 
 const User = require('../models/User.model');
-const Fest = require('../models/Fest.model')
+const Fest = require('../models/Fest.model');
+const fileUploader = require('../config/cloudinary.config');
+const Comment = require('../models/Comment.model')
+
 
 const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
 
@@ -61,9 +64,20 @@ router.get('/login', isLoggedOut, (req, res, next) => {
 
 router.get('/profile', isLoggedIn, (req, res, next) => {
   Fest.find()
+  
   .populate('owner')
   .then((foundFests) => {
-      res.render('users/profile.hbs', { foundFests } );
+    // console.log(foundFests)
+    console.log(req.session.user._id)
+    let profileFests=[];
+    for (let i=0;i<foundFests.length;i++){
+    console.log(String(foundFests[i].owner._id))      
+    if (String(foundFests[i].owner._id) === req.session.user._id){
+      profileFests.push(foundFests[i])
+    }
+    }
+    console.log(profileFests)
+      res.render('users/profile.hbs', { profileFests } );
   })
   .catch((err) => {
       console.log(err)

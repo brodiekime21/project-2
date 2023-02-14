@@ -9,6 +9,7 @@
   "dependencies": {
     "@cloudinary/url-gen": "^1.9.0",
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.34.0",
     "connect-mongo": "^4.6.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -18,6 +19,8 @@
     "hbs": "~4.0.4",
     "http-errors": "~1.6.3",
     "mongoose": "^6.9.1",
-    "morgan": "~1.9.1"
+    "morgan": "~1.9.1",
+    "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0"
   }
 }

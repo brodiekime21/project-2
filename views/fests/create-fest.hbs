@@ -1,6 +1,6 @@
 <h2>Add New Fest</h2>
 
-<form action="/fests/create-fest" method="post">
+<form action="/fests/create-fest" method="post" enctype="multipart/form-data">
 
 <label for="">Festival name</label>
 <input type="text" name="name">
@@ -8,8 +8,11 @@
 <label for="">Description</label>
 <input type="text" name="description">
 
-<label for="">Image</label>
-<input type="text" name="imageUrl">
+<label for="">Rating</label>
+<input type="number" name="rating">
+
+<label for="">Picture from Festival</label>
+<input type="file" name="imageUrl">
 
 <button type="submit">Add Fest</button>
 

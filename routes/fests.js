@@ -4,6 +4,8 @@ var router = express.Router();
 const { isLoggedIn, isOwner, isNotOwner } = require('../middleware/route-guard')
 
 const Fest = require('../models/Fest.model')
+const fileUploader = require('../config/cloudinary.config')
+
 
 const Comment = require('../models/Comment.model')
 
@@ -17,21 +19,23 @@ router.get('/all-fests', (req, res, next) => {
     .catch((err) => {
         console.log(err)
     })
-
 });
 
-router.get('/create-fest', isLoggedIn, (req, res, next) => {   /////I TOOK OUT MIDDLEWARE
+router.get('/create-fest', isLoggedIn, (req, res, next) => {
   res.render('fests/create-fest.hbs');
 });
 
-router.post('/create-fest', isLoggedIn, (req, res, next) => {
 
-    const { name, description, imageUrl } = req.body
+
+router.post('/create-fest', isLoggedIn ,fileUploader.single('imageUrl'), (req, res, next) => {
+
+    const { name, description, rating } = req.body
 
     Fest.create({
         name,
         description,
-        imageUrl,
+        rating,
+        imageUrl: req.file.path,
         owner: req.session.user._id
     })
     .then((createdFest) => {
@@ -43,6 +47,7 @@ router.post('/create-fest', isLoggedIn, (req, res, next) => {
     })
 
 })
+
 
 router.get('/details/:id', (req, res, next) => {
     
@@ -72,23 +77,64 @@ router.get('/edit/:id', isOwner, (req, res, next) => {
     })
 })
 
-router.post('/edit/:id', isOwner, (req, res, next) => {
-    const { name, description, imageUrl } = req.body
-    Fest.findByIdAndUpdate(req.params.id, 
-        {
-            name, 
-            description,
-            imageUrl
-        },
-        {new: true})
-    .then((updatedFest) => {
-        console.log(updatedFest)
-        res.redirect(`/fests/details/${req.params.id}`)
+
+
+router.post('/edit/:id', isOwner, fileUploader.single('imageUrl'), (req, res, next) => {
+    const { name, description, rating, imageUrl } = req.body
+console.log("This is the file", req.file)
+    Fest.findById(req.params.id)
+    .then((foundFest) => {
+
+        if (req.file){
+            console.log(req.file)
+            
+            return Fest.findByIdAndUpdate(req.params.id, 
+                {
+                    name, 
+                    description,
+                    rating,
+                    imageUrl: req.file.path,
+                },
+                {new: true})
+            .then((updatedFest) => {
+                console.log(updatedFest)
+                // res.redirect(`/fests/details/${req.params.id}`)
+            })
+            .catch((err) => {
+                console.log(err)
+            })   
+        }
+        else {
+            return Fest.findByIdAndUpdate(req.params.id, 
+                {
+                    name, 
+                    description,
+                    rating,
+                },
+                {new: true})
+            .then((updatedFest) => {
+                console.log(updatedFest)
+                // res.redirect(`/fests/details/${req.params.id}`)
+            })
+            .catch((err) => {
+                console.log(err)
+            })   
+        }
+    
+    })
+    .then((finalUpdate)=>{
+    console.log("Final Update", finalUpdate)
+    res.redirect(`/fests/details/${req.params.id}`)
+
     })
     .catch((err) => {
         console.log(err)
     })
 }) 
+
+
+
+
 
 router.get('/delete/:id', isOwner, (req, res, next) => {
     Fest.findByIdAndDelete(req.params.id)
