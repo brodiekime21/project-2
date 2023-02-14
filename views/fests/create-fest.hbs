@@ -1,19 +1,31 @@
 <h2>Add New Fest</h2>
 
-<form action="/fests/create-fest" method="post" enctype="multipart/form-data">
+<form class="fest-form" action="/fests/create-fest" method="post" enctype="multipart/form-data">
 
-<label for="">Festival name</label>
-<input type="text" name="name">
-
-<label for="">Description</label>
-<input type="text" name="description">
-
-<label for="">Rating</label>
-<input type="number" name="rating">
-
-<label for="">Picture from Festival</label>
-<input type="file" name="imageUrl">
-
+    <div>
+        <label for="">Festival name</label>
+        <input type="text" name="name">
+    </div>
+        <br>
+    <div>
+    <label for="">Review</label>
+    <input type="text" name="review">
+    </div>
+        <br>
+    <div>
+        <label for="">Favorite Set</label>
+        <input type="text" name="favSet">
+    </div>
+        <br>
+    <div>
+        <label for="">Rating</label>
+        <input type="number" name="rating">
+    </div>
+        <br>
+    <div>
+        <label for="">Picture from Festival</label>
+        <input type="file" name="imageUrl">
+    </div>
+        <br>
 <button type="submit">Add Fest</button>
-
 </form>

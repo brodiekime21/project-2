@@ -12,7 +12,7 @@ const fileUploader = require('../config/cloudinary.config');
 const Comment = require('../models/Comment.model')
 
 
-const { isLoggedIn, isLoggedOut } = require('../middleware/route-guard');
+const { isLoggedIn, isLoggedOut, isOwner } = require('../middleware/route-guard');
 
 /* GET users listing. */
 router.get('/signup', isLoggedOut, (req, res, next) => {
@@ -27,7 +27,15 @@ router.post('/signup', isLoggedOut, (req, res, next) => {
     res.render('users/signup.hbs', { errorMessage: 'All fields are mandatory. Please provide your username, email and password.' });
     return;
   }
- 
+
+  const regex = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regex.test(password)) {
+    res
+      .status(500)
+      .render('users/signup', { errorMessage: 'Password needs to have at least 6 chars and must contain at least one number, one lowercase and one uppercase letter.' });
+    return;
+  }
+
   bcryptjs
     .genSalt(saltRounds)
     .then((salt) => {
@@ -67,16 +75,15 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
   
   .populate('owner')
   .then((foundFests) => {
-    // console.log(foundFests)
-    console.log(req.session.user._id)
+    // console.log(req.session.user._id)
     let profileFests=[];
     for (let i=0;i<foundFests.length;i++){
-    console.log(String(foundFests[i].owner._id))      
+    // console.log(String(foundFests[i].owner._id))      
     if (String(foundFests[i].owner._id) === req.session.user._id){
       profileFests.push(foundFests[i])
     }
     }
-    console.log(profileFests)
+    // console.log(profileFests)
       res.render('users/profile.hbs', { profileFests } );
   })
   .catch((err) => {
@@ -115,5 +122,71 @@ router.get('/logout', (req, res, next) => {
     res.redirect('/users/login');
   });
 });
+
+
+
+router.get('/edit-profile/:id', isOwner, (req, res, next) => {
+
+  User.findById(req.params.id)
+  .then((foundUser) => {
+      res.render('users/edit-profile.hbs', foundUser)
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+})
+
+
+router.post('/edit-profile/:id', isOwner, fileUploader.single('imageUrl'), (req, res, next) => {
+  const { username, bio, profileImageUrl } = req.body
+  console.log("This is the file", req.file)
+  User.findById(req.params.id)
+  .then((foundUser) => {
+
+      if (req.file){
+          console.log(req.file)
+          
+          return User.findByIdAndUpdate(req.params.id, 
+              {
+                  username, 
+                  bio,
+                  profileImageUrl: req.file.path,
+              },
+              {new: true})
+          .then((updatedUser) => {
+              console.log(updatedUser)
+              // res.redirect(`/fests/details/${req.params.id}`)
+          })
+          .catch((err) => {
+              console.log(err)
+          })
+      }
+      else {
+          return User.findByIdAndUpdate(req.params.id, 
+              {
+                username, 
+                  bio,
+              },
+              {new: true})
+          .then((updatedUser) => {
+              console.log(updatedUser)
+              // res.redirect(`/fests/details/${req.params.id}`)
+          })
+          .catch((err) => {
+              console.log(err)
+          })   
+      }
+  
+  })
+  .then((finalUpdate)=>{
+  console.log("Final Update", finalUpdate)
+  res.redirect(`/users/profile/${req.params.id}`)
+
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+}) 
+
 
 module.exports = router;

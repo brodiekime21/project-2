@@ -11,12 +11,16 @@ const userSchema = new Schema(
     email: {
       type: String,
       required: [true, 'Email is required.'],
+      match: [/^\S+@\S+\.\S+$/, 'Please use a valid email address.'],
+      lowercase: true,
       unique: true,
     },
     password: {
       type: String,
       required: [true, 'Password is required.']
     },
+    profileImageUrl: String,
+    bio: String,
   },
   {
     timestamps: true

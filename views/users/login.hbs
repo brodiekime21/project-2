@@ -4,15 +4,15 @@
 
 
     <label for="">Email</label>
-    <input type="email" name="email">
+    <input type="email" name="email" placeholder="your@email.com">
 
     <label for="">Password</label>
-    <input type="password" name="password">
+    <input type="password" name="password" placeholder="********">
 
     <button type="submit">Login</button>
 
-</form>
+    {{#if errorMessage}}
+        <p>{{errorMessage}}</p>
+    {{/if}}
 
-{{#if errorMessage}}
-    <p>{{errorMessage}}</p>
-{{/if}}
+</form>

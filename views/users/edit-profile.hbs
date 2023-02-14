@@ -1,0 +1,16 @@
+<h2>Edit Profile</h2>
+
+<form action="/users/edit-profile/{{id}}"  method="post" enctype="multipart/form-data">
+
+    <label for="">Username</label>
+    <input type="text" name="username" value="{{username}}">
+
+    <label for="">Bio</label>
+    <input type="text" name="bio" value="{{bio}}">
+
+    <label for="">Profile Picture</label>
+    <input type="file" name="profileImageUrl"  value={{profileImageUrl}}> 
+
+    <button type="submit">Create Account</button>
+
+</form>

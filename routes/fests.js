@@ -29,12 +29,13 @@ router.get('/create-fest', isLoggedIn, (req, res, next) => {
 
 router.post('/create-fest', isLoggedIn ,fileUploader.single('imageUrl'), (req, res, next) => {
 
-    const { name, description, rating } = req.body
+    const { name, review, rating, favSet } = req.body
 
     Fest.create({
         name,
-        description,
+        review,
         rating,
+        favSet,
         imageUrl: req.file.path,
         owner: req.session.user._id
     })
@@ -45,7 +46,6 @@ router.post('/create-fest', isLoggedIn ,fileUploader.single('imageUrl'), (req, r
     .catch((err) => {
         console.log(err)
     })
-
 })
 
 
@@ -80,7 +80,7 @@ router.get('/edit/:id', isOwner, (req, res, next) => {
 
 
 router.post('/edit/:id', isOwner, fileUploader.single('imageUrl'), (req, res, next) => {
-    const { name, description, rating, imageUrl } = req.body
+    const { name, review, rating, favSet } = req.body
 console.log("This is the file", req.file)
     Fest.findById(req.params.id)
     .then((foundFest) => {
@@ -91,8 +91,9 @@ console.log("This is the file", req.file)
             return Fest.findByIdAndUpdate(req.params.id, 
                 {
                     name, 
-                    description,
+                    review,
                     rating,
+                    favSet,
                     imageUrl: req.file.path,
                 },
                 {new: true})
@@ -102,14 +103,15 @@ console.log("This is the file", req.file)
             })
             .catch((err) => {
                 console.log(err)
-            })   
+            })
         }
         else {
             return Fest.findByIdAndUpdate(req.params.id, 
                 {
                     name, 
-                    description,
+                    review,
                     rating,
+                    favSet,
                 },
                 {new: true})
             .then((updatedFest) => {
@@ -147,7 +149,7 @@ router.get('/delete/:id', isOwner, (req, res, next) => {
     })
 })
 
-router.post('/add-comment/:id', (req, res, next) => {
+router.post('/add-comment/:id', isLoggedIn, (req, res, next) => {
 
     Comment.create({
         user: req.session.user._id,

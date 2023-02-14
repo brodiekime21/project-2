@@ -25,7 +25,7 @@ const isOwner = (req, res, next) => {
     .populate('owner')
     .then((foundFest) => {
         if (!req.session.user || foundFest.owner._id.toString() !== req.session.user._id) {
-            res.render('index.hbs', {errorMessage: "You are not authorized."})
+            res.redirect(`/fests/details/${req.params.id}`)
         } else {
             next()
         }
@@ -33,29 +33,28 @@ const isOwner = (req, res, next) => {
     .catch((err) => {
         console.log(err)
     })
-
 }
 
-const isNotOwner = (req, res, next) => {
+// const isNotOwner = (req, res, next) => {
 
-    Fest.findById(req.params.id)
-    .populate('owner')
-    .then((foundFest) => {
-        if (!req.session.user || foundFest.owner._id.toString() === req.session.user._id) {
-            res.render('index.hbs', {errorMessage: "You can't comment your own fest."})
-        } else {
-            next()
-        }
-    })
-    .catch((err) => {
-        console.log(err)
-    })
+//     Fest.findById(req.params.id)
+//     .populate('owner')
+//     .then((foundFest) => {
+//         if (!req.session.user || foundFest.owner._id.toString() === req.session.user._id) {
+//             res.render('index.hbs', {errorMessage: "You can't comment your own fest."})
+//         } else {
+//             next()
+//         }
+//     })
+//     .catch((err) => {
+//         console.log(err)
+//     })
 
-}
+// }
 
 module.exports = {
 isLoggedIn,
 isLoggedOut,
 isOwner,
-isNotOwner
+// isNotOwner
 };

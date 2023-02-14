@@ -10,3 +10,8 @@ a {
 img {
   height: 25vh;
 }
+
+.fest-form {
+display: flex;
+flex-direction: column;
+}
