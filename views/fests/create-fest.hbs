@@ -1,6 +1,6 @@
 <h2>Add New Fest</h2>
 
-<form class="fest-form" action="/fests/create-fest" method="post" enctype="multipart/form-data">
+<form action="/fests/create-fest" method="post" enctype="multipart/form-data">
 
     <div>
         <label for="">Festival name</label>
@@ -18,7 +18,7 @@
     </div>
         <br>
     <div>
-        <label for="">Rating</label>
+        <label for="">Rating (0-100)</label>
         <input type="number" name="rating">
     </div>
         <br>
@@ -27,5 +27,13 @@
         <input type="file" name="imageUrl">
     </div>
         <br>
+
 <button type="submit">Add Fest</button>
+
 </form>
+
+{{#if errorMessage}}
+
+    <p>{{errorMessage}}</p>
+
+{{/if}}

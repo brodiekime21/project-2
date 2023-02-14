@@ -83,7 +83,7 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
       profileFests.push(foundFests[i])
     }
     }
-    // console.log(profileFests)
+    console.log(profileFests[0].owner.username)
       res.render('users/profile.hbs', { profileFests } );
   })
   .catch((err) => {
@@ -116,77 +116,79 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-router.get('/logout', (req, res, next) => {
-  req.session.destroy(err => {
-    if (err) next(err);
-    res.redirect('/users/login');
-  });
-});
 
 
-
-router.get('/edit-profile/:id', isOwner, (req, res, next) => {
-
-  User.findById(req.params.id)
+router.get('/edit-profile', isLoggedIn, (req, res, next) => { //took out middleware
+  
+  User.findById(req.session.user._id)
   .then((foundUser) => {
-      res.render('users/edit-profile.hbs', foundUser)
+    console.log(foundUser)
+    res.render('users/edit-profile.hbs', foundUser)
   })
   .catch((err) => {
-      console.log(err)
+    console.log(err)
   })
 })
 
 
-router.post('/edit-profile/:id', isOwner, fileUploader.single('imageUrl'), (req, res, next) => {
+router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, next) => { //took out middleware
   const { username, bio, profileImageUrl } = req.body
   console.log("This is the file", req.file)
   User.findById(req.params.id)
   .then((foundUser) => {
-
-      if (req.file){
-          console.log(req.file)
-          
-          return User.findByIdAndUpdate(req.params.id, 
-              {
-                  username, 
-                  bio,
-                  profileImageUrl: req.file.path,
-              },
-              {new: true})
-          .then((updatedUser) => {
-              console.log(updatedUser)
-              // res.redirect(`/fests/details/${req.params.id}`)
-          })
-          .catch((err) => {
-              console.log(err)
-          })
+    
+    if (req.file){
+      // console.log(req.file)
+      
+      return User.findByIdAndUpdate(req.params.id, 
+        {
+          username, 
+          bio,
+          profileImageUrl: req.file.path,
+        },
+        {new: true})
+        .then((updatedUser) => {
+          // console.log(updatedUser)
+          // res.redirect(`/fests/details/${req.params.id}`)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
       }
       else {
-          return User.findByIdAndUpdate(req.params.id, 
-              {
-                username, 
-                  bio,
-              },
-              {new: true})
+        return User.findByIdAndUpdate(req.params.id, 
+          {
+            username, 
+            bio,
+          },
+          {new: true})
           .then((updatedUser) => {
-              console.log(updatedUser)
-              // res.redirect(`/fests/details/${req.params.id}`)
+            // console.log(updatedUser)
+            // res.redirect(`/fests/details/${req.params.id}`)
           })
           .catch((err) => {
-              console.log(err)
+            console.log(err)
           })   
-      }
-  
-  })
-  .then((finalUpdate)=>{
-  console.log("Final Update", finalUpdate)
-  res.redirect(`/users/profile/${req.params.id}`)
-
-  })
-  .catch((err) => {
-      console.log(err)
-  })
-}) 
-
-
-module.exports = router;
+        }
+        
+      })
+      .then((finalUpdate)=>{
+        // console.log("Final Update", finalUpdate)
+        res.redirect(`/users/profile`)
+        
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+    }) 
+    
+    
+    router.get('/logout', (req, res, next) => {
+      req.session.destroy(err => {
+        if (err) next(err);
+        res.redirect('/users/login');
+      });
+    });
+    
+    module.exports = router;
+    

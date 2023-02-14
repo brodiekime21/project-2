@@ -44,7 +44,9 @@ router.post('/create-fest', isLoggedIn ,fileUploader.single('imageUrl'), (req, r
         res.redirect('/fests/all-fests')
     })
     .catch((err) => {
-        console.log(err)
+        const message = err.errors.rating.properties.message
+        console.log(err.errors.rating.properties.message)
+        res.render('fests/create-fest.hbs',{errorMessage: message});
     })
 })
 

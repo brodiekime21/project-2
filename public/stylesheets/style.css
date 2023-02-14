@@ -11,6 +11,24 @@ img {
   height: 25vh;
 }
 
+body nav a{
+  padding: 0.25em 1em;
+  text-decoration: none; /* no underline */
+  background-color: #EBF5FF; /* pale bluish white */
+  color: violet; /* dark blue */
+  border: 2px solid black;
+  border-radius: 1em 1em; /* rounded corner! */
+  
+}
+
+body nav a:hover, nav ul li a:focus {
+  color: black;
+  background-color: white;
+  font-weight: bold;
+}
+
+
+
 .fest-form {
 display: flex;
 flex-direction: column;

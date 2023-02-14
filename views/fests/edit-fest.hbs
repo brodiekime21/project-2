@@ -21,7 +21,7 @@
         <br>
 
     <div>
-        <label for="">Rating</label>
+        <label for="">Rating (0-100)</label>
         <input type="number" name="rating" value="{{rating}}">
     </div>
         <br>
@@ -35,3 +35,9 @@
 <button type="submit">Edit Fest</button>
 
 </form>
+
+{{#if errorMessage}}
+
+    <p>{{errorMessage}}</p>
+
+{{/if}}

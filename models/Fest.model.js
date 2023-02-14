@@ -8,7 +8,8 @@ const festSchema = new Schema({
     review: String,
     rating: {
     type:  Number,
-    match: [/^(100|[1-9][0-9]?)$/, 'Please enter a number between 0 and 100.'],
+    min: [0, "must be greater than 0"], 
+    max: [100, "must be less than 100"]
     },
     imageUrl: String,
     favSet: String,

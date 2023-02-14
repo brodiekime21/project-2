@@ -9,7 +9,6 @@ const Comment = require('../models/Comment.model')
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // res.render('index', { title: 'Best Fest' });
-
   Fest.find()
   .populate('owner')
   .then((foundFests) => {
@@ -19,5 +18,6 @@ router.get('/', function(req, res, next) {
       console.log(err)
   })
 });
+
 
 module.exports = router;
