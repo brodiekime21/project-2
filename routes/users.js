@@ -71,20 +71,21 @@ router.get('/login', isLoggedOut, (req, res, next) => {
 });
 
 router.get('/profile', isLoggedIn, (req, res, next) => {
-  Fest.find()
+  Fest.find({owner: req.session.user._id})
   
   .populate('owner')
   .then((foundFests) => {
+    console.log("line 78", foundFests)
     // console.log(req.session.user._id)
-    let profileFests=[];
-    for (let i=0;i<foundFests.length;i++){
-    // console.log(String(foundFests[i].owner._id))      
-    if (String(foundFests[i].owner._id) === req.session.user._id){
-      profileFests.push(foundFests[i])
-    }
-    }
-    console.log(profileFests[0].owner.username)
-      res.render('users/profile.hbs', { profileFests } );
+    // let profileFests=[];
+    // for (let i=0;i<foundFests.length;i++){
+    // // console.log(String(foundFests[i].owner._id))      
+    // if (String(foundFests[i].owner._id) === req.session.user._id){
+    //   profileFests.push(foundFests[i])
+    // }
+    // }
+    // console.log(profileFests[0].owner.username)
+      res.render('users/profile.hbs', { foundFests, name: req.session.user.username } );
   })
   .catch((err) => {
       console.log(err)

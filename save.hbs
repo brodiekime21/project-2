@@ -1,5 +1,6 @@
 <h2>Edit Fest</h2>
 
+
 <form action="/fests/edit/{{foundFest._id}}" method="post" enctype="multipart/form-data">
 
     <div>
@@ -32,14 +33,26 @@
     </div>
         <br>
 
-<button type="submit">Edit Fest</button>
+    <button type="submit">Edit Fest</button>
+    <br>
+    <br>
 
+    {{!-- <script>
+        $('#loginAlert').hide();
+        const urlParams = new URLSearchParams(window.location.search);
+        const myParam = urlParams.get('err');
+        if(myParam == "Incorrect_Credential") {
+        $('#loginAlert').show();
+    }
+    </script>
+    <div class="alert alert-success" role="alert" id="loginAlert">
+    <p style="text-align: center;">Incorrect Credential</p>
+    </div> --}}
 
 </form>
 
 {{#if errorMessage}}
 
     <p>{{errorMessage}}</p>
-
 
 {{/if}}

@@ -2,15 +2,22 @@
 
 <form action="/users/profile"  method="post" enctype="multipart/form-data">
 
-    <label for="">Username</label>
-    <input type="text" name="username" value="{{username}}">
+    <div>
+        <label for="">Username</label>
+        <input type="text" name="username" value="{{username}}">
+    </div>
+    <br>
+    <div>
+        <label for="">Bio</label>
+        <input type="text" name="bio" value="{{bio}}">
+    </div>
+    <br>
 
-    <label for="">Bio</label>
-    <input type="text" name="bio" value="{{bio}}">
-
-    <label for="">Profile Picture</label>
-    <input type="file" name="profileImageUrl"  value={{profileImageUrl}}> 
-
+    <div>
+        <label for="">Profile Picture</label>
+        <input type="file" name="profileImageUrl"  value={{profileImageUrl}}> 
+    </div>
+    <br>
     <button type="submit">Edit Profile</button>
 
 </form>

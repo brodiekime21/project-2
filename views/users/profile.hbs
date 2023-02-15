@@ -1,14 +1,15 @@
 <br>
-<img src="{{profileFests.0.owner.profileImageUrl}}" alt="Profile Image">
-<h3>{{profileFests.0.owner.username}}</h3>
-<p>{{profileFests.0.owner.bio}}</p>
+{{!-- <h1>{{name}}</h1> --}}
+<img src="{{foundFests.0.owner.profileImageUrl}}" alt="Profile Image">
+<h1>{{foundFests.0.owner.username}}</h1>
+<p>{{foundFests.0.owner.bio}}</p>
 
 
 {{!-- {{#if fests}}
 
     <ul> --}}
 
-{{#each profileFests}}
+{{#each foundFests}}
 
     {{> eachFest}}
     <a href="/fests/details/{{_id}}">See details</a>
