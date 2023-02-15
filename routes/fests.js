@@ -83,7 +83,17 @@ router.get('/edit/:id', isOwner, (req, res, next) => {
 
 router.post('/edit/:id', isOwner, fileUploader.single('imageUrl'), (req, res, next) => {
     const { name, review, rating, favSet } = req.body
-console.log("This is the file", req.file)
+
+    const regex = /^(100|[1-9][0-9]?)$/;
+    if (!regex.test(rating)) {
+      res
+        .status(500)
+        .redirect(`/fests/edit/${req.params.id}`)
+
+        // .render('fests/edit-fest.hbs', { errorMessage: 'Rating must be between 0 and 100.' });
+      return;
+    }
+    // console.log("This is the file", req.file)
     Fest.findById(req.params.id)
     .then((foundFest) => {
 

@@ -8,8 +8,8 @@ const festSchema = new Schema({
     review: String,
     rating: {
     type:  Number,
-    min: [0, "must be greater than 0"], 
-    max: [100, "must be less than 100"]
+    min: [0, "Rating must be between 0 and 100"], 
+    max: [100, "Rating must be between 0 and 100"]
     },
     imageUrl: String,
     favSet: String,
