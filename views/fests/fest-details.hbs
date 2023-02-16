@@ -6,12 +6,16 @@
 
 <a href="/fests/delete/{{_id}}"><button>Delete</button></a>
 <br>
+<br>
 
 <form action="/fests/add-comment/{{_id}}" method="post">
     <label for="">New Comment</label>
     <input type="text" name="comment">
 
     <button type="submit">Add Comment</button>
+    <br>
+    <br>
+
 
 </form>
 
@@ -24,6 +28,7 @@
         <li>
             <p>{{comment}}</p>
             <h6>-{{user.username}}</h6>
+            <a href="/fests/delete-comment/{{_id}}"><button>Delete Comment</button></a>
         </li>
 
     {{/each}}
@@ -32,6 +37,6 @@
 
 {{else}}
 
-    <p>No Reviews yet</p>
+    <p>No comments yet</p>
 
 {{/if}}

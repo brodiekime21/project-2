@@ -212,5 +212,17 @@ router.post('/add-comment/:id', isLoggedIn, (req, res, next) => {
     })
 })
 
+router.get('/delete-comment/:id', (req, res, next) => {
+    Comment.findByIdAndDelete(req.params.id)
+    .then((confirmation) => {
+        console.log(confirmation)
+        res.redirect(`/fests/details/${req.params.id}`)
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+})
+
+
 
 module.exports = router;

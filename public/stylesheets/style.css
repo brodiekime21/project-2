@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-image: url('../images/background.jpeg');
 }
 
 a {
@@ -14,8 +15,8 @@ img {
 body nav a{
   padding: 0.25em 1em;
   text-decoration: none; /* no underline */
-  background-color: #EBF5FF; /* pale bluish white */
-  color: violet; /* dark blue */
+  background-color: #ffbd59; /* pale bluish white */
+  color: black; /* dark blue */
   border: 2px solid black;
   border-radius: 1em 1em; /* rounded corner! */
   
@@ -23,13 +24,23 @@ body nav a{
 
 body nav a:hover, nav ul li a:focus {
   color: black;
-  background-color: white;
+  background-color: #FDD598;
   font-weight: bold;
 }
 
-
+#welcome {
+  height: 40vh;
+width: 80vw;
+}
 
 .fest-form {
 display: flex;
 flex-direction: column;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
