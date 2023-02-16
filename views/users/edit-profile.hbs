@@ -1,6 +1,6 @@
 <h2>Edit Profile</h2>
 
-<form action="/users/profile"  method="post" enctype="multipart/form-data">
+<form action="/users/edit-profile/{{_id}}"  method="post" enctype="multipart/form-data">
 
     <div>
         <label for="">Username</label>
@@ -15,8 +15,9 @@
 
     <div>
         <label for="">Profile Picture</label>
-        <input type="file" name="profileImageUrl"  value={{profileImageUrl}}> 
+        <input type="file" name="imageUrl"  value={{imageUrl}}> 
     </div>
+
     <br>
     <button type="submit">Edit Profile</button>
 

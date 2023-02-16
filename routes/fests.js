@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-const { isLoggedIn, isOwner, isNotOwner } = require('../middleware/route-guard')
+const { isLoggedIn, isOwner, isNotOwner, isCommentOwner } = require('../middleware/route-guard')
 
 const Fest = require('../models/Fest.model')
 const fileUploader = require('../config/cloudinary.config')
@@ -191,10 +191,14 @@ router.get('/delete/:id', isOwner, (req, res, next) => {
 })
 
 router.post('/add-comment/:id', isLoggedIn, (req, res, next) => {
+    Fest.findById(req.params.id)
+    .then((foundFest) => {
+        return Comment.create({
+            user: req.session.user._id,
+            comment: req.body.comment,
+            festId: foundFest._id
+        })
 
-    Comment.create({
-        user: req.session.user._id,
-        comment: req.body.comment
     })
     .then((newComment) => {
        return Fest.findByIdAndUpdate(req.params.id, 
@@ -204,7 +208,7 @@ router.post('/add-comment/:id', isLoggedIn, (req, res, next) => {
             {new: true})
     })
     .then((festWithComment) => {
-        console.log(festWithComment)
+        // console.log(festWithComment)
         res.redirect(`/fests/details/${req.params.id}`)
     })
     .catch((err) => {
@@ -212,11 +216,20 @@ router.post('/add-comment/:id', isLoggedIn, (req, res, next) => {
     })
 })
 
-router.get('/delete-comment/:id', (req, res, next) => {
+router.get('/delete-comment/:id',isCommentOwner,  (req, res, next) => {
     Comment.findByIdAndDelete(req.params.id)
-    .then((confirmation) => {
-        console.log(confirmation)
-        res.redirect(`/fests/details/${req.params.id}`)
+    .then((commentFound) => {
+        return Fest.findByIdAndUpdate(commentFound.festId,
+            {
+                $pull: {comments: commentFound._id}
+            },
+            {new: true})
+        // console.log(commentFound)
+       
+    })
+    .then((foundFest) => {
+        console.log("this is the found fest", foundFest)
+        res.redirect(`/fests/details/${foundFest.id}`)
     })
     .catch((err) => {
         console.log(err)

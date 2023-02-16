@@ -1,6 +1,7 @@
 // middleware/route-guard.js
 
 const Fest = require('../models/Fest.model')
+const Comment = require('../models/Comment.model')
 
 // checks if the user is logged in when trying to access a specific page
 const isLoggedIn = (req, res, next) => {
@@ -35,6 +36,38 @@ const isOwner = (req, res, next) => {
     })
 }
 
+const isCommentOwner = (req, res, next) => {
+
+    Comment.findById(req.params.id)
+    .populate('user')
+    .then((foundComment) => {
+        if (!req.session.user || foundComment.user._id.toString() !== req.session.user._id) {
+            res.redirect(`/fests/details/${foundComment.festId}`)
+        } else {
+            next()
+        }
+    })
+    .catch((err) => {
+        console.log(err)
+    })
+}
+
+// const isCommentOwner = (req, res, next) => {
+
+//     Fest.findById(req.params.id)
+//     .populate('owner')
+//     .then((foundFest) => {
+//         if (!req.session.user || foundFest.owner._id.toString() !== req.session.user._id) {
+//             res.redirect(`/fests/details/${req.params.id}`)
+//         } else {
+//             next()
+//         }
+//     })
+//     .catch((err) => {
+//         console.log(err)
+//     })
+// }
+
 // const isNotOwner = (req, res, next) => {
 
 //     Fest.findById(req.params.id)
@@ -56,5 +89,6 @@ module.exports = {
 isLoggedIn,
 isLoggedOut,
 isOwner,
+isCommentOwner,
 // isNotOwner
 };

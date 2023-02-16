@@ -85,7 +85,7 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
     // }
     // }
     // console.log(profileFests[0].owner.username)
-      res.render('users/profile.hbs', { foundFests, name: req.session.user.username } );
+      res.render('users/profile.hbs', { foundFests, user: req.session.user } );
   })
   .catch((err) => {
       console.log(err)
@@ -134,7 +134,8 @@ router.get('/edit-profile', isLoggedIn, (req, res, next) => { //took out middlew
 
 router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, next) => { //took out middleware
   const { username, bio, profileImageUrl } = req.body
-  console.log("This is the file", req.file)
+  // console.log("This is the file", req.file)
+  console.log("this is the username and bio", username, bio)
   User.findById(req.params.id)
   .then((foundUser) => {
     
