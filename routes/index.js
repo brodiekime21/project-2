@@ -11,6 +11,11 @@ router.get('/', function(req, res, next) {
   Fest.find()
   .populate('owner')
   .then((foundFests) => {
+    console.log(foundFests)
+    foundFests.sort((a,b) => {
+     return b.rating-a.rating
+    })
+    console.log(foundFests)
       res.render('index.hbs', { title: 'Best Fest', foundFests } );
   })
   .catch((err) => {

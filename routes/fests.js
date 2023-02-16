@@ -14,6 +14,7 @@ router.get('/all-fests', (req, res, next) => {
     Fest.find()
     .populate('owner')
     .then((foundFests) => {
+        foundFests.reverse()
         res.render('fests/all-fests.hbs', { foundFests });
     })
     .catch((err) => {

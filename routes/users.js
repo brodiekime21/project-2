@@ -102,6 +102,7 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
   
   .populate('owner')
   .then((foundFests) => {
+    foundFests.reverse()
     console.log("line 78", foundFests)
       res.render('users/profile.hbs', { foundFests, user: req.session.user } );
   })
@@ -164,15 +165,15 @@ router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, nex
       .catch((err) => {
         console.log(err)
       })
-    }) 
+}) 
     
     
-    router.get('/logout', (req, res, next) => {
+router.get('/logout', (req, res, next) => {
       req.session.destroy(err => {
         if (err) next(err);
         res.redirect('/users/login');
       });
-    });
+});
     
     module.exports = router;
     

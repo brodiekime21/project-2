@@ -1,7 +1,10 @@
+
+
 body {
   padding: 0px 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Itim', cursive;
   background-image: url('../images/background.jpeg');
+  
 }
 
 #profile-pic{
@@ -18,6 +21,13 @@ img {
   margin-top: 15px;
 }
 
+
+#font {
+  font-family: 'Itim', cursive;
+  font-size: 25px;
+
+}
+
 body nav a{
   padding: 0.25em 1em;
   text-decoration: none; /* no underline */
@@ -28,10 +38,29 @@ body nav a{
   
 }
 
-body nav a:hover, nav ul li a:focus {
+
+
+body nav a:hover, nav a:focus {
   color: #FD7F31;
   background-color: #FDD598;
   font-weight: bold;
+}
+
+.see-details-text{
+  text-decoration: none; /* no underline */
+  font-size: 30px;
+  border: 4px solid #FD7F31;
+  border-radius: 10px;
+  padding: 2px 8px;
+  color: #FD7F31;
+  background-color: #ffbd59;
+}
+
+.see-details-text:hover, .see-details-text:focus {
+  color: #FDD598;
+  background-color: #FD7F31;
+  font-weight: bold;
+  border-color: #FDD598 ;
 }
 
 #welcome {
@@ -82,3 +111,4 @@ nav {
 .rating-box{
   width: 45px;
 }
+
