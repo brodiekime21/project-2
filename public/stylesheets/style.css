@@ -22,14 +22,14 @@ body nav a{
   padding: 0.25em 1em;
   text-decoration: none; /* no underline */
   background-color: #ffbd59; /* pale bluish white */
-  color: black; /* dark blue */
-  border: 2px solid black;
+  color: #FD7F31; /* dark blue */
+  border: 2px solid #FD7F31;
   border-radius: 1em 1em; /* rounded corner! */
   
 }
 
 body nav a:hover, nav ul li a:focus {
-  color: black;
+  color: #FD7F31;
   background-color: #FDD598;
   font-weight: bold;
 }

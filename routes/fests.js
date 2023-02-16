@@ -108,7 +108,7 @@ router.get('/edit/:id', isOwner, (req, res, next) => {
 router.post('/edit/:id', isOwner, fileUploader.single('imageUrl'), (req, res, next) => {
     const { name, review, rating, favSet } = req.body
 
-        const regex = /^(100|[1-9][0-9]?)$/;
+    const regex = /^(100|[1-9][0-9]?)$/;
 
     if (req.file){
 
