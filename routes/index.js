@@ -6,9 +6,8 @@ const Fest = require('../models/Fest.model');
 const fileUploader = require('../config/cloudinary.config');
 const Comment = require('../models/Comment.model')
 
-/* GET home page. */
+
 router.get('/', function(req, res, next) {
-  // res.render('index', { title: 'Best Fest' });
   Fest.find()
   .populate('owner')
   .then((foundFests) => {

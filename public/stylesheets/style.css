@@ -62,3 +62,23 @@ nav {
   width: 50%;
   height: 50%;
 }
+
+.festival-name-box{
+  width: 350px;
+  display: flex;
+}
+
+.review-box{
+  width: 80vw;
+  height: 200px;
+  display: flex;
+}
+
+.favorite-set-box{
+  width: 350px;
+  display: flex;
+}
+
+.rating-box{
+  width: 45px;
+}

@@ -103,15 +103,6 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
   .populate('owner')
   .then((foundFests) => {
     console.log("line 78", foundFests)
-    // console.log(req.session.user._id)
-    // let profileFests=[];
-    // for (let i=0;i<foundFests.length;i++){
-    // // console.log(String(foundFests[i].owner._id))      
-    // if (String(foundFests[i].owner._id) === req.session.user._id){
-    //   profileFests.push(foundFests[i])
-    // }
-    // }
-    // console.log(profileFests[0].owner.username)
       res.render('users/profile.hbs', { foundFests, user: req.session.user } );
   })
   .catch((err) => {
@@ -119,7 +110,7 @@ router.get('/profile', isLoggedIn, (req, res, next) => {
   })
 });
 
-router.get('/edit-profile', isLoggedIn, (req, res, next) => { //took out middleware
+router.get('/edit-profile', isLoggedIn, (req, res, next) => { 
   
   User.findById(req.session.user._id)
   .then((foundUser) => {
@@ -132,16 +123,12 @@ router.get('/edit-profile', isLoggedIn, (req, res, next) => { //took out middlew
 })
 
 
-router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, next) => { //took out middleware
+router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, next) => { 
   const { username, bio, profileImageUrl } = req.body
-  // console.log("This is the file", req.file)
-  console.log("this is the username and bio", username, bio)
   User.findById(req.params.id)
   .then((foundUser) => {
     
     if (req.file){
-      // console.log(req.file)
-      
       return User.findByIdAndUpdate(req.params.id, 
         {
           username, 
@@ -150,8 +137,6 @@ router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, nex
         },
         {new: true})
         .then((updatedUser) => {
-          // console.log(updatedUser)
-          // res.redirect(`/fests/details/${req.params.id}`)
         })
         .catch((err) => {
           console.log(err)
@@ -165,8 +150,6 @@ router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, nex
           },
           {new: true})
           .then((updatedUser) => {
-            // console.log(updatedUser)
-            // res.redirect(`/fests/details/${req.params.id}`)
           })
           .catch((err) => {
             console.log(err)
@@ -175,7 +158,6 @@ router.post('/edit-profile/:id', fileUploader.single('imageUrl'), (req, res, nex
         
       })
       .then((finalUpdate)=>{
-        // console.log("Final Update", finalUpdate)
         res.redirect(`/users/profile`)
         
       })
