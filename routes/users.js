@@ -97,18 +97,18 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-router.get('/profile', isLoggedIn, (req, res, next) => {
-  Fest.find({owner: req.session.user._id})
-  
-  .populate('owner')
-  .then((foundFests) => {
-    foundFests.reverse()
-    console.log("line 78", foundFests)
-      res.render('users/profile.hbs', { foundFests, user: req.session.user } );
-  })
-  .catch((err) => {
-      console.log(err)
-  })
+router.get("/profile", isLoggedIn, (req, res, next) => {
+  Fest.find({ owner: req.session.user._id })
+
+    .populate("owner")
+    .then(async (foundFests) => {
+      foundFests.reverse();
+      let user = await User.findOne({ _id: foundFests[0].owner._id });
+      res.render("users/profile.hbs", { foundFests, user: user });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
 
 router.get('/edit-profile', isLoggedIn, (req, res, next) => { 

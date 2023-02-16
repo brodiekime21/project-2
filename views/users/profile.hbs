@@ -1,21 +1,22 @@
 <br>
 {{!-- <h1>{{name}}</h1> --}}
 <img id="profile-pic" src="{{user.profileImageUrl}}" alt="Profile Image">
-<h1>{{user.username}}</h1>
-<p>{{user.bio}}</p>
+<h1>Username: {{user.username}}</h1>
+<p>Bio: {{user.bio}}</p>
+<h2>{{user.username}}'s created Fest's below</h2>
 
 
 {{!-- {{#if fests}}
 
     <ul> --}}
-
+<div class="all-fests">
 {{#each foundFests}}
-
+<div class="one-fest">
     {{> eachFest}}
-    <a href="/fests/details/{{_id}}">See details</a>
-
+    <a class="see-details-text" href="/fests/details/{{_id}}">See details</a>
+</div>
 {{/each}}
-
+</div>
     {{!-- </ul>
 
 {{else}}
