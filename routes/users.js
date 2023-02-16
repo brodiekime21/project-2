@@ -70,27 +70,7 @@ router.get('/login', isLoggedOut, (req, res, next) => {
   res.render('users/login.hbs')
 });
 
-router.get('/profile', isLoggedIn, (req, res, next) => {
-  Fest.find({owner: req.session.user._id})
-  
-  .populate('owner')
-  .then((foundFests) => {
-    console.log("line 78", foundFests)
-    // console.log(req.session.user._id)
-    // let profileFests=[];
-    // for (let i=0;i<foundFests.length;i++){
-    // // console.log(String(foundFests[i].owner._id))      
-    // if (String(foundFests[i].owner._id) === req.session.user._id){
-    //   profileFests.push(foundFests[i])
-    // }
-    // }
-    // console.log(profileFests[0].owner.username)
-      res.render('users/profile.hbs', { foundFests, user: req.session.user } );
-  })
-  .catch((err) => {
-      console.log(err)
-  })
-});
+
 
 router.post('/login', (req, res, next) => {
   const { email, password } = req.body;
@@ -117,7 +97,27 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-
+router.get('/profile', isLoggedIn, (req, res, next) => {
+  Fest.find({owner: req.session.user._id})
+  
+  .populate('owner')
+  .then((foundFests) => {
+    console.log("line 78", foundFests)
+    // console.log(req.session.user._id)
+    // let profileFests=[];
+    // for (let i=0;i<foundFests.length;i++){
+    // // console.log(String(foundFests[i].owner._id))      
+    // if (String(foundFests[i].owner._id) === req.session.user._id){
+    //   profileFests.push(foundFests[i])
+    // }
+    // }
+    // console.log(profileFests[0].owner.username)
+      res.render('users/profile.hbs', { foundFests, user: req.session.user } );
+  })
+  .catch((err) => {
+      console.log(err)
+  })
+});
 
 router.get('/edit-profile', isLoggedIn, (req, res, next) => { //took out middleware
   
