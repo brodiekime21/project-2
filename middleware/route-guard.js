@@ -5,7 +5,7 @@ const Comment = require('../models/Comment.model')
 
 const isLoggedIn = (req, res, next) => {
     if (!req.session.user) {
-      return res.redirect('/users/login');
+      return res.render('users/login.hbs', {errorMessage: "You must be logged in to do that."})
     }
     next();
 };
