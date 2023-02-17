@@ -8,9 +8,9 @@
 
 {{!-- NEED TO ADD REVIEW AND FAVORITE SET SOMEHOW --}}
 
-<a href="/fests/edit/{{_id}}"><button>Edit</button></a>
+<a  href="/fests/edit/{{_id}}"><button class="see-details-text">Edit</button></a>
 
-<a href="/fests/delete/{{_id}}"><button>Delete</button></a>
+<a  href="/fests/delete/{{_id}}"><button class="see-details-text">Delete</button></a>
 <br>
 <br>
 
@@ -18,9 +18,9 @@
     <label for="">Comments</label>
     <br>
     <br>
-    <input type="text" name="comment">
+    <input type="text" name="comment" style="border-radius: 10px; color: #FD7F31; border: 2px solid #FD7F31; background-color: #FDD598;">
 
-    <button type="submit">Add Comment</button>
+    <button class="see-details-text" type="submit">Add Comment</button>
     <br>
     <br>
 
@@ -35,8 +35,8 @@
 
         <li>
             <p>{{comment}}</p>
-            <h4>-{{user.username}}</h4>
-            <a href="/fests/delete-comment/{{_id}}"><button>Delete Comment</button></a>
+            <h4>- <a class="posted-by-tag" href="/users/profile/{{user._id}}">{{user.username}}</a></h4>
+            <a  href="/fests/delete-comment/{{_id}}"><button class="see-details-text">Delete Comment</button></a>
         </li>
 
     {{/each}}

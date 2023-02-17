@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()">
     <title>{{title}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -13,17 +15,19 @@
   <body>
     <nav>
       <div>
-      <img class="logo" src="/images/best-fest-logo.png" alt="Best Fest logo">
-      <a href="/">Home</a>
+      <a href="/"><img class="logo" src="/images/best-fest-logo.png" alt="Best Fest logo"></a>
       </div>
-      <div>
-      <a href="/fests/all-fests">See All Fests</a>
-      <a href="/fests/create-fest">Add New Fest</a>
-      <a href="/users/profile">Profile</a>
-      <a href="/users/edit-profile">Edit Profile</a>       
-      <a href="/users/signup">Sign Up</a>
-      <a href="/users/login">Login</a>
-      <a href="/users/logout">Logout</a>
+      <div class="to-right">
+        <div class="centered-words-on-nav">
+      <a class="nav" href="/">Home</a>
+        </div>
+      <a class="nav" href="/fests/all-fests">See All Fests</a>
+      <a class="nav" href="/fests/create-fest">Add New Fest</a>
+      <a class="nav" href="/users/profile">Profile</a>
+      <a class="nav" href="/users/edit-profile">Edit Profile</a>       
+      <a class="nav" href="/users/signup">Sign Up</a>
+      <a class="nav" href="/users/login">Login</a>
+      <a class="nav" href="/users/logout">Logout</a>
       </div>
     </nav>
     <br>
