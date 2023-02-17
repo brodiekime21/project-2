@@ -10,6 +10,7 @@ const User = require('../models/User.model');
 const Fest = require('../models/Fest.model');
 const fileUploader = require('../config/cloudinary.config');
 const Comment = require('../models/Comment.model')
+const Handlebars = require('handlebars')
 
 
 const { isLoggedIn, isLoggedOut, isOwner } = require('../middleware/route-guard');
@@ -97,19 +98,30 @@ router.post('/login', (req, res, next) => {
     .catch(error => next(error));
 });
 
-router.get("/profile", isLoggedIn, (req, res, next) => {
-  Fest.find({ owner: req.session.user._id })
-
-    .populate("owner")
-    .then(async (foundFests) => {
-      foundFests.reverse();
-      let user = await User.findOne({ _id: foundFests[0].owner._id });
-      res.render("users/profile.hbs", { foundFests, user: user });
+router.get("/profile", isLoggedIn, async (req, res, next) => {
+  Handlebars.registerHelper('isdefined', function (value) {
+    return value !== undefined;
+  });
+  await User.findOne({ _id: req.session.user._id })
+    .then(async (foundUser) => {
+      let fests = await Fest.find({ owner: foundUser._id }).populate('owner')
+      res.render("users/profile.hbs", { fests, user: foundUser });
     })
     .catch((err) => {
       console.log(err);
     });
 });
+
+router.get("/profile/:id", async (req, res) => {
+const id = req.params.id
+User.findOne({_id: id}).then(async(foundUser) => {
+let fests = await Fest.find({ owner: foundUser._id }).populate('owner')
+res.render("users/userprofile.hbs", {fests, user: foundUser})})
+.catch((err) => {
+  console.log(err)
+})
+})
+
 
 router.get('/edit-profile', isLoggedIn, (req, res, next) => { 
   
