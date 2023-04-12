@@ -1,23 +1,18 @@
 <h2>Login</h2>
 
 <form action="/users/login"  method="post">
-
-<div>
-    <label for="">Email</label>
-    <input class="festival-name-box textarea" type="email" name="email" placeholder="your@email.com">
-</div>
-<br>
-
-<div>
-    <label for="">Password</label>
-    <input class="festival-name-box textarea" type="password" name="password" placeholder="********">
-</div>
-<br>
-
+    <div>
+        <label for="">Email</label>
+        <input class="festival-name-box textarea" type="email" name="email" placeholder="your@email.com">
+    </div>
+        <br>
+    <div>
+        <label for="">Password</label>
+        <input class="festival-name-box textarea" type="password" name="password" placeholder="********">
+    </div>
+        <br>
     <button class="see-details-text" type="submit">Login</button>
-
     {{#if errorMessage}}
         <p>{{errorMessage}}</p>
     {{/if}}
-
 </form>

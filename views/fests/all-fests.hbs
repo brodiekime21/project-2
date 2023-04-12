@@ -1,10 +1,10 @@
 <h2>All Fests</h2>
 
 <div class="all-fests">
-{{#each foundFests}}
-<div class="one-fest">
-    {{> eachFest}}
-    <a class="see-details-text" href="/fests/details/{{_id}}">See details</a>
-</div>
-{{/each}}
+    {{#each foundFests}}
+        <div class="one-fest">
+            {{> eachFest}}
+            <a class="see-details-text" href="/fests/details/{{_id}}">See details</a>
+        </div>
+    {{/each}}
 </div>

@@ -6,22 +6,17 @@
 <h2>{{user.username}}'s created Fest's below</h2>
 <hr style="border: 5px dashed #FDD598">
 
-
 {{#if (isdefined fests)}}
-
-    
+   
 <div class="all-fests">
-{{#each fests}}
-<div class="one-fest">
-    {{> eachFest}}
-    <a class="see-details-text" href="/fests/details/{{_id}}">See details</a>
+    {{#each fests}}
+        <div class="one-fest">
+            {{> eachFest}}
+            <a class="see-details-text" href="/fests/details/{{_id}}">See details</a>
+        </div>
+    {{/each}}
 </div>
-{{/each}}
-</div>
-
 
 {{else}}
-
     <p>They haven't created any festivals yet!</p>
-
 {{/if}}

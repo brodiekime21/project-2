@@ -1,28 +1,24 @@
 <h2>Sign Up</h2>
 
 <form action="/users/signup"  method="post">
-
-<div>
-    <label for="">Username</label>
-    <input class="festival-name-box textarea" type="text" name="username" placeholder="username">    
-</div>
-<br>
-<div>
-    <label for="">Email</label>
-    <input class="festival-name-box textarea" type="email" name="email" placeholder="your@email.com">
-</div>
-<br>
-<div>
-    <label for="">Password</label>
-    <input class="festival-name-box textarea" type="password" name="password" placeholder="********">
-</div>
-<br>
+    <div>
+        <label for="">Username</label>
+        <input class="festival-name-box textarea" type="text" name="username" placeholder="username">    
+    </div>
+        <br>
+    <div>
+        <label for="">Email</label>
+        <input class="festival-name-box textarea" type="email" name="email" placeholder="your@email.com">
+    </div>
+        <br>
+    <div>
+        <label for="">Password</label>
+        <input class="festival-name-box textarea" type="password" name="password" placeholder="********">
+    </div>
+        <br>
     <button class="see-details-text" type="submit">Create Account</button>
-
 </form>
 
 {{#if errorMessage}}
-
     <p>{{errorMessage}}</p>
-
 {{/if}}

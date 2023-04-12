@@ -1,12 +1,12 @@
 <div id="homepage">
 <img id="welcome" src="/images/welcome.png" alt="welcome image">
 
-<div class="all-fests">
-{{#each foundFests}}
-<div class="one-fest">
-    {{> eachFest}}
-    <a class="see-details-text" href="/fests/details/{{_id}}">See details</a>
-</div>
-{{/each}}
-</div>
+    <div class="all-fests">
+        {{#each foundFests}}
+            <div class="one-fest">
+                {{> eachFest}}
+                <a class="see-details-text" href="/fests/details/{{_id}}">See details</a>
+            </div>
+        {{/each}}
+    </div>
 </div>

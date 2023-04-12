@@ -1,9 +1,9 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const commentSchema = new Schema({
-    user: { type: Schema.Types.ObjectId, ref: "User" },
-    comment: { type: String, maxlength: 200 },
-    festId: {type: Schema.Types.ObjectId, ref: "Fest"}
+  user: { type: Schema.Types.ObjectId, ref: "User" },
+  comment: { type: String, maxlength: 200 },
+  festId: { type: Schema.Types.ObjectId, ref: "Fest" },
 });
 
-module.exports = model('Comment', commentSchema);
+module.exports = model("Comment", commentSchema);

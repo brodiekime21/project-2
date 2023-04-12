@@ -1,45 +1,34 @@
 <h2>Edit Fest</h2>
 
 <form action="/fests/edit/{{foundFest._id}}" method="post" enctype="multipart/form-data">
-
     <div>
         <label for="">Festival Name</label>
         <input class="festival-name-box textarea" type="text" name="name" value="{{foundFest.name}}">
     </div>
         <br>
-
     <div>
         <label for="">Review</label>
         <textarea class="review-box textarea" type="text" name="review" value="{{foundFest.review}}">{{foundFest.review}}</textarea>
     </div>
         <br>
-
     <div>
         <label for="">Favorite Set</label>
         <input class="favorite-set-box textarea"type="text" name="favSet" value="{{foundFest.favSet}}">
     </div>
         <br>
-
     <div>
         <label for="">Rating (0-100)</label>
         <input class="rating-box textarea" type="number" name="rating" value="{{foundFest.rating}}">
     </div>
         <br>
-
     <div>
         <label for="">Picture from Festival</label>
         <input type="file" name="imageUrl"  value={{foundFest.imageUrl}}>
     </div>
         <br>
-
-<button class="see-details-text" type="submit">Update Fest</button>
-
-
+    <button class="see-details-text" type="submit">Update Fest</button>
 </form>
 
 {{#if errorMessage}}
-
     <p>{{errorMessage}}</p>
-
-
 {{/if}}
