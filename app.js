@@ -6,6 +6,7 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const userMiddleware = require('./middleware/user-middleware');
 
 const hbs = require("hbs");
 
@@ -32,6 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+
 app.use(
   session({
     secret: process.env.SESS_SECRET,
@@ -41,16 +43,16 @@ app.use(
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       secure: process.env.NODE_ENV === "production",
       httpOnly: true,
-      maxAge: 600000, // 60 * 10000 ms === 10 min
+      maxAge: 600000,
     },
     store: MongoStore.create({
       mongoUrl: process.env.MONGODB_URI || "mongodb://localhost/basic-auth",
-
-      // ttl => time to live
-      // ttl: 60 * 60 * 24 // 60sec * 60min * 24h => 1 day
     }),
   })
 );
+
+app.use(userMiddleware.setUser);
+
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

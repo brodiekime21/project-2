@@ -62,7 +62,6 @@ nav {
   background-color: #FD7F31;
   font-weight: bold;
   border-color: #FDD598 ;
-
 }
 
 .see-details-text{
@@ -184,13 +183,11 @@ object-fit: cover;
     margin-top: 35px;
     display: flex;
     flex-direction: column;
-  
   }
+
   .to-right{
     display: flex;
     flex-direction: column;
-
-  
   }
 
   #welcome {

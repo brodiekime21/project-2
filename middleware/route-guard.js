@@ -55,6 +55,15 @@ const isCommentOwner = (req, res, next) => {
     });
 };
 
+
+module.exports = {
+  isLoggedIn,
+  isLoggedOut,
+  isOwner,
+  isCommentOwner,
+};
+
+// isNotOwner
 // const isNotOwner = (req, res, next) => {
 
 //     Fest.findById(req.params.id)
@@ -71,11 +80,3 @@ const isCommentOwner = (req, res, next) => {
 //     })
 
 // }
-
-module.exports = {
-  isLoggedIn,
-  isLoggedOut,
-  isOwner,
-  isCommentOwner,
-  // isNotOwner
-};
