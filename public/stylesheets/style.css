@@ -1,10 +1,7 @@
-
-
 body {
   padding: 0px 50px;
   font-family: 'Itim', cursive;
-  background-image: url('../images/background.jpeg');
-  
+  background-image: url('../images/background.jpeg'); 
 }
 
 #profile-pic{
@@ -13,8 +10,6 @@ body {
   border: 8px solid #ffbd59;
   border-radius: 20px;
 }
-
-
 
 img {
   height: 80px;
@@ -40,28 +35,18 @@ width: 30vw;
 display: flex;
 flex-direction: column;
 align-items: center;
-
 margin: 0px 2px 100px 2px
-
 }
 
-body nav {
+nav {
   margin-top: 35px;
-
-
-
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* .centered-words-on-nav{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-
-  
-} */
-
-.nav{
+.nav, .see-details-text{
   text-decoration: none;
   font-size: 18px;
   border: 4px solid #FD7F31;
@@ -72,8 +57,19 @@ body nav {
   margin: 3px;
 }
 
+.nav:hover, .nav:focus, .see-details-text:hover, .see-details-text:focus {
+  color: #FDD598;
+  background-color: #FD7F31;
+  font-weight: bold;
+  border-color: #FDD598 ;
+
+}
+
+.see-details-text{
+  font-size: 25px;
+}
+
 .textarea{
-  
   border-radius: 10px;
   color: #FD7F31;
   border: 2px solid #FD7F31;
@@ -84,35 +80,8 @@ body nav {
   color: #FD7F31;
 }
 
-.nav:hover, .nav:focus {
-  color: #FDD598;
-  background-color: #FD7F31;
-  font-weight: bold;
-  border-color: #FDD598 ;
-
-}
-
 .to-right{
   display: flex;
-
-}
-
-.see-details-text{
-  text-decoration: none;
-  font-size: 25px;
-  border: 4px solid #FD7F31;
-  border-radius: 10px;
-  padding: 2px 8px;
-  color: #FD7F31;
-  background-color: #ffbd59;
-  margin-bottom: 20px;
-}
-
-.see-details-text:hover, .see-details-text:focus {
-  color: #FDD598;
-  background-color: #FD7F31;
-  font-weight: bold;
-  border-color: #FDD598 ;
 }
 
 #welcome {
@@ -125,12 +94,6 @@ display: flex;
 flex-direction: column;
 }
 
-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
 
 #homepage{
   display: flex;
@@ -140,8 +103,9 @@ nav {
 }
 
 #fest-image{
-height: auto;
-width: 250px;
+height: 135px;
+width: 240px;
+object-fit: cover;
 }
 
 .festival-name-box{
@@ -201,7 +165,6 @@ width: 250px;
    justify-content: center;    
   }
 
-
   .all-fests{
     display: flex;
     flex-direction: column;
@@ -226,7 +189,6 @@ width: 250px;
   .to-right{
     display: flex;
     flex-direction: column;
-    
 
   
   }
