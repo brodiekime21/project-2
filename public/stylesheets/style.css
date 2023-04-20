@@ -6,21 +6,20 @@ body {
 
 #profile-pic{
   height: 200px;
-  width: auto;
+  width: 200px;
   border: 8px solid #ffbd59;
-  border-radius: 20px;
+  border-radius: 100px;
+  object-fit: cover;
 }
 
 img {
   height: 80px;
 }
 
-
 #font {
   font-family: 'Itim', cursive;
   font-size: 28px;
   color: #FDD598
-
 }
 
 .all-fests{
@@ -39,7 +38,7 @@ margin: 0px 2px 100px 2px
 }
 
 nav {
-  margin-top: 35px;
+  margin-top: 30px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -55,6 +54,7 @@ nav {
   color: #FD7F31;
   background-color: #ffbd59;
   margin: 3px;
+  font-family: 'Itim', cursive;
 }
 
 .nav:hover, .nav:focus, .see-details-text:hover, .see-details-text:focus {
@@ -69,6 +69,10 @@ nav {
   font-size: 25px;
 }
 
+.to-right{
+  display: flex;
+}
+
 .textarea{
   border-radius: 10px;
   color: #FD7F31;
@@ -78,10 +82,6 @@ nav {
 
 .textarea::placeholder{
   color: #FD7F31;
-}
-
-.to-right{
-  display: flex;
 }
 
 #welcome {
