@@ -6,7 +6,6 @@ var logger = require("morgan");
 var mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const userMiddleware = require('./middleware/user-middleware');
 
 const hbs = require("hbs");
 
@@ -33,7 +32,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
-
 app.use(
   session({
     secret: process.env.SESS_SECRET,
@@ -50,9 +48,6 @@ app.use(
     }),
   })
 );
-
-app.use(userMiddleware.setUser);
-
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);
