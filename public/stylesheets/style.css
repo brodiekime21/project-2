@@ -154,8 +154,16 @@ object-fit: cover;
   border-color: #FDD598 ;
 }
 
+h2{
+  font-size: 48px;
+}
 
-@media (max-width: 415px) {
+h3{
+  font-size: 36px;
+}
+
+
+@media (max-width: 550px) {
   body {
     padding: 0px 10px;
    display: flex;
