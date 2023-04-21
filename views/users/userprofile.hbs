@@ -2,7 +2,9 @@
 {{!-- <h1>{{name}}</h1> --}}
 <img id="profile-pic" src="{{user.profileImageUrl}}" alt="Profile Image">
 <h1>Username: {{user.username}}</h1>
+{{#if user.bio}}
 <p>Bio: {{user.bio}}</p>
+{{/if}}
 <h2>{{user.username}}'s created Fest's below</h2>
 <hr style="border: 5px dashed #FDD598">
 

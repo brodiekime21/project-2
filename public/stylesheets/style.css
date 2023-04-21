@@ -6,6 +6,14 @@ body {
   font-size: 28px;
 }
 
+h2{
+  font-size: 48px;
+}
+
+h3{
+  font-size: 36px;
+}
+
 #profile-pic{
   height: 200px;
   width: 200px;
@@ -61,10 +69,10 @@ nav {
 }
 
 .see-details-text{
-  font-size: 25px;
+  font-size: 24px;
 }
 
-.to-right{
+.nav-options{
   display: flex;
 }
 
@@ -77,6 +85,26 @@ nav {
 
 .textarea::placeholder{
   color: #FD7F31;
+}
+
+.basic-button{
+  text-decoration: none;
+  font-size: 24px;
+  border: 4px solid #FD7F31;
+  border-radius: 10px;
+  padding: 2px 8px;
+  color: #FD7F31;
+  background-color: #ffbd59;
+  margin: 3px;
+  font-family: 'Itim', cursive;
+  display: flex;
+}
+
+.basic-button:hover, .basic-button:focus {
+  color: #FDD598;
+  background-color: #FD7F31;
+  font-weight: bold;
+  border-color: #FDD598 ;
 }
 
 #welcome {
@@ -103,7 +131,7 @@ width: 240px;
 object-fit: cover;
 }
 
-.festival-name-box{
+.basic-box{
   width: 400px;
   display: flex;
 }
@@ -135,7 +163,7 @@ object-fit: cover;
 }
 
 .posted-by-tag{
-  text-decoration: none; /* no underline */
+  text-decoration: none;
   font-size: 28px;
   border-radius: 10px;
   padding: 2px 8px;
@@ -150,15 +178,6 @@ object-fit: cover;
   border-color: #FDD598 ;
 }
 
-h2{
-  font-size: 48px;
-}
-
-h3{
-  font-size: 36px;
-}
-
-
 @media (max-width: 550px) {
   body {
    padding: 0px 10px;
@@ -166,10 +185,19 @@ h3{
    flex-direction: column;
    align-items: center; 
    justify-content: center;    
+   font-size: 28px;
+  }
+
+  h2{
+    font-size: 48px;
+  }
+  
+  h3{
+    font-size: 36px;
   }
 
   #logo {
-    height: 80px;
+    height: 100px;
     margin-bottom: 8px;
   }
 
@@ -185,23 +213,70 @@ h3{
     justify-content: center; 
   }
   
+
   .one-fest{
   height: auto;
   width: 70vw;
-  
-  margin: 0px 2px 100px 2px
-  
+  margin: 0px 2px 60px 2px
   }
 
-  body nav {
-    margin-top: 35px;
+  .regular-menu {
+    display: none;
+  }
+
+  nav {
     display: flex;
     flex-direction: column;
   }
 
-  .to-right{
+  .nav, .see-details-text{
+    border-radius: 10px;
+    width: 200px;
+    margin: 3px;
+    display: flex;
+  }
+
+  .basic-button{
+    border-radius: 10px;
+    width: 200px;
+    margin: 3px;
+    display: flex;
+  }
+
+
+
+  .nav-options{
     display: flex;
     flex-direction: column;
+    align-items: center;
+    width: 200px;
+  }
+
+  .basic-box{
+    width: 300px;
+    display: flex;
+  }
+  
+  .username-box{
+    width: 300px;
+    display: flex;
+  }
+  
+  .review-box{
+    width: 90vw;
+    height: 200px;
+    display: flex;
+  }
+  
+  .bio-box{
+    width: 90vw;
+    height: 120px;
+    display: flex;
+  }
+  
+  .favorite-set-box{
+    width: 300px;
+    display: flex;
   }
 
 }
