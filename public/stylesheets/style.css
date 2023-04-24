@@ -108,8 +108,8 @@ nav {
 }
 
 #welcome {
-  width: 65vw;
-  height: auto;
+  width: 55vw;
+  margin-bottom: 50px;
 }
 
 .fest-form {
@@ -202,8 +202,8 @@ object-fit: cover;
   }
 
   #welcome {
-    height: 223.83px;
-    width: 358.14px;
+    height: 104.89px;
+    width: 303.05px;
   }
 
   .all-fests{
@@ -284,8 +284,18 @@ object-fit: cover;
 @media (min-width: 1400px) {
 
   #welcome {
-    height: 568.75px;
-    width: 910px;
+
   }
+
+}
+
+@media (min-width: 1700px) {
+
+  #fest-image{
+    height: 270px;
+    width: 480px;
+    object-fit: cover;
+    }
+
 
 }
