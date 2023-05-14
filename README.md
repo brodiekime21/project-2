@@ -22,10 +22,15 @@ To install and run the project on your local machine, follow these steps:
 3. Create a `.env` file in the root folder and set the necessary environment variables:
 
 PORT=<your_port>
+<br>
 MONGODB_URI=<your_mongodb_uri>
+<br>
 SESSION_SECRET=<your_session_secret>
+<br>
 CLOUD_NAME=<your_cloudinary_cloud_name>
+<br>
 API_KEY=<your_cloudinary_api_key>
+<br>
 API_SECRET=<your_cloudinary_api_secret>
 
 4. Run `npm start` to start the application.
