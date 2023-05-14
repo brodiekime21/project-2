@@ -6,12 +6,35 @@ Best Fest is a web application that allows users to review and rate music festiv
 
 ## Table of Contents
 
-1. [Installation and Setup](#installation-and-setup)
-2. [Folder Structure](#folder-structure)
-3. [Models](#models)
-4. [Middleware](#middleware)
-5. [Configuration](#configuration)
-6. [License](#license)
+1. [Features](#features)
+2. [Technologies](#technologies)
+3. [Installation and Setup](#installation-and-setup)
+4. [Folder Structure](#folder-structure)
+5. [Models](#models)
+6. [Middleware](#middleware)
+7. [Configuration](#configuration)
+8. [License](#license)
+9. [Support](#support)
+
+## Features
+
+- User authentication (signup, login, logout)
+- Users can create, edit, and delete festival reviews
+- Users can rate festivals (0-100 scale)
+- Users can upload images for festivals and profiles
+- Users can comment on festival reviews
+- Festival owners can edit and delete comments on their festivals
+
+## Technologies
+
+- Node.js
+- Express
+- MongoDB
+- Mongoose
+- Handlebars
+- Cloudinary
+- Multer
+- Passport
 
 ## Installation and Setup
 
@@ -92,4 +115,4 @@ This project is licensed under the Creative Commons Attribution-NonCommercial-Sh
 
 ## Support
 
-If you have any questions or encounter any issues while playing the game, please open an issue on the GitHub repository.
+If you have any questions or encounter any issues while using the website, please open an issue on the GitHub repository.
